@@ -3,9 +3,7 @@
 <?php
 
 $routes = [
-    "cv" => '../ressources/views/cv.php',
-    "hobby" => '../ressources/views/hobby.php',
-    "contact" => '../ressources/views/contact.php',
+    "404" => '../ressources/views/errors/404.php',
 ];
 
 $p = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
