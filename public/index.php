@@ -1,10 +1,9 @@
 <?php
 
-include '../config/database.php' ;
+include '../config/database.php';
 $db = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, $dbUser, $dbPassword);
 
 $routes = [
-    "" => '../ressources/views/errors/404.php',
     "toto" => '../ressources/views/errors/404.php',
 ];
 
@@ -16,8 +15,11 @@ if (array_key_exists($p, $routes)) {
     $render = ob_get_clean();
     echo $render;
 } else {
-    http_response_code(404);
-    include '../ressources/views/errors/404.php';
-    exit;
+    if ($p = '/') {
+        include '../app/controllers/homeController.php';
+    } else {
+        http_response_code(404);
+        include '../ressources/views/errors/404.php';
+        exit;
+    }
 }
-
