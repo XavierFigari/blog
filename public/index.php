@@ -1,7 +1,7 @@
 <?php
 
 include '../config/database.php';
-$db = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, $dbUser, $dbPassword);
+$database = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, $dbUser, $dbPassword);
 
 $routes = [
     "toto" => '../ressources/views/errors/404.php',
