@@ -2,6 +2,7 @@
 
 include '../config/database.php';
 $database = new PDO('mysql:host=' . $host . ';dbname=' . $dbName, $dbUser, $dbPassword);
+var_dump($database);
 
 $routes = [
     "toto" => '../ressources/views/errors/404.php',
