@@ -27,15 +27,15 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     User ->> index.php: ?action=
-    index.php ->> homeController.php: include
-    homeController.php ->> blogPostController.php: displayPost()
-    blogPostController.php ->> PDO: prepare()
-    PDO -->> blogPostController.php: PDOStatement
-    blogPostController.php ->> PDOStatement: execute()
-    PDOStatement -->> blogPostController.php: isSuccess
-    blogPostController.php ->> PDOStatement: fetchAll()
-    PDOStatement -->> blogPostController.php: blogPost
-    blogPostData.php -->> homeController.php: blogPost
-    homeController.php ->> home.tpl.php: blogPost
-    home.tpl.php -->> User: display blogPost
+    index.php ->> blogPostController.php: include
+    blogPostController.php ->> blogPostData.php: displayPost()
+    blogPostData.php ->> PDO: prepare()
+    PDO -->> blogPostData.php: PDOStatement
+    blogPostData.php ->> PDOStatement: execute()
+    PDOStatement -->> blogPostData.php: isSuccess
+    blogPostData.php ->> PDOStatement: fetchAll()
+    PDOStatement -->> blogPostData.php: blogPost
+    blogPostData.php -->> blogPostController.php: blogPost
+    blogPostController.php ->> blogPost.tpl.php: blogPost
+    blogPost.tpl.php -->> User: display blogPost
 ```
