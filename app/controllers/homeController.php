@@ -1,15 +1,11 @@
 <?php
-// global $database;
-//echo 'Hello world';
+
 require '../app/persistences/blogPostData.php' ;
 
-//afficher les 10 derniers posts
+// Récupérer les 10 derniers posts
+$articlesToDisplay = 3;
+$posts = lastBlogPosts($database, $articlesToDisplay) ;
 
-$posts = lastBlogPosts($database) ;
-
-/*foreach ($posts as $row):
-    echo '<li>' . $row['title'] . '-' . $row['content'] '</li>' ;
-endforeach;*/
-
-var_dump($posts);
-
+// Les afficher
+// var_dump($posts);
+require '../ressources/views/home.tpl.php' ;

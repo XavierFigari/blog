@@ -1,12 +1,18 @@
 <?php
 
-function lastBlogPosts ($db) {
-    $query = file_get_contents('../database/lastBlogPosts.sql');
-    // $handle = $db->prepare($query);
-    $statement = $db->query($query);
-    $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $rows;
-    // $lastBlogs = array('','','','','','','','','',) ;
-    // $arr[] = array();
-    // return $lastBlogs;
+function lastBlogPosts (PDO $db, $number) {
+    $query = "SELECT posts.title,
+                    posts.content,
+                    posts.pubDate,
+                    authors.name,
+                    authors.firstName,
+                    DATE_FORMAT(pubDate, '%d/%m/%Y') as date
+              FROM posts
+                INNER JOIN authors
+                    ON posts.authors_id = authors.id
+              ORDER BY pubDate DESC LIMIT " . $number ;
+
+//    $query = "SELECT * FROM posts ORDER BY pubDate DESC LIMIT " . $number;
+    //$statement = ;
+    return $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
 }
