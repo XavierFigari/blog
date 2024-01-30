@@ -51,3 +51,23 @@ sequenceDiagram
     blogPostController.php ->> blogPost.tpl.php: blogPost, blogComment
     blogPost.tpl.php -->> User: display blogPost and blogComment
 ```
+
+## Créer un article :
+```mermaid
+sequenceDiagram
+    User ->> index.php: ?action=blogPostCreate
+    index.php ->> blogPostCreateController.php: include
+    blogPostCreateController.php ->> blogPostCreate.tpl.php: Envoyer données Formulaire
+    blogPostCreate.tpl.php -->> blogPostCreateController.php: blogPost
+    blogPostCreateController.php ->> blogPostData.php: blogPostCreate()
+    blogPostData.php ->> PDO: prepare()
+    PDO -->> blogPostData.php: PDOStatement
+    blogPostData.php ->> PDOStatement: execute()
+    PDOStatement -->> blogPostData.php: isSuccess
+    blogPostData.php ->> PDOStatement: fetchAll()
+    PDOStatement -->> blogPostData.php: blogPost
+    blogPostData.php -->> blogPostCreateController.php: blogPost
+
+    blogPostCreateController.php ->> blogPost.tpl.php: blogPost, blogComment
+    blogPost.tpl.php -->> User: display blogPost and blogComment
+```

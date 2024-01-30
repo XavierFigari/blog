@@ -1,6 +1,6 @@
 <?php
 
-function lastBlogPosts (PDO $db, $number) {
+function lastBlogPosts (PDO $pdo, $number) {
     $query = "SELECT 
                     posts.id,
                     posts.title,
@@ -13,9 +13,9 @@ function lastBlogPosts (PDO $db, $number) {
                 INNER JOIN authors
                     ON posts.authors_id = authors.id
               ORDER BY pubDate DESC LIMIT " . $number ;
-    return $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    return $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
 }
-function blogPostById (PDO $db, $id) {
+function blogPostById (PDO $pdo, $id) {
     $query = "SELECT 
                     posts.id,
                     posts.title,
@@ -28,9 +28,19 @@ function blogPostById (PDO $db, $id) {
                 INNER JOIN authors
                     ON posts.authors_id = authors.id
               WHERE posts.id = " . $id ;
-    return $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    return $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+
+    // MIEUX :
+//    $query = "SELECT title, content, name FROM posts JOIN authors ON posts.authors_id = authors.id AND posts.id = ?";
+//    PDOStatement: $stmt = $pdo->prepare($query);
+//    $stmt -> execute([$idArticle]);
+//    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//    // return post with author
+//   return $result;
+
 }
-function commentsByBlogPost (PDO $db, $id) {
+function commentsByBlogPost (PDO $pdo, $id) {
     $query = "  SELECT comments.comment,
                     authors.name,
                     authors.firstName
@@ -38,5 +48,12 @@ function commentsByBlogPost (PDO $db, $id) {
                     INNER JOIN posts ON comments.posts_id = posts.id
                     INNER JOIN authors ON comments.authors_id = authors.id
                 WHERE comments.posts_id = " . $id ;
-    return $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    return $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function blogPostCreate (PDO $pdo, $data) {
+    $queryCreate = "INSERT INTO posts ( title, content, pubDate, endDate, importance, authors_id ) 
+                    VALUES (?, ?, ?, ?, ?, (SELECT id FROM authors WHERE name = ?) )";
+    $statement = $pdo -> prepare($queryCreate);
+    $statement -> execute([$data['title'], $data['content'], $data['pubDate'], $data['endDate'], $data['importance'], "Anonyme"]);
 }

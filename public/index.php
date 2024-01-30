@@ -3,7 +3,8 @@
 include '../config/database.php';
 
 $routes = [
-    "blogpost" => '../app/controllers/blogPostController.php',
+    "blogpost"       => '../app/controllers/blogPostController.php',
+    "blogPostCreate" => '../app/controllers/blogPostCreateController.php',
 ];
 
 $p = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);

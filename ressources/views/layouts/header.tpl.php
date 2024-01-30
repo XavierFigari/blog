@@ -17,3 +17,5 @@ $metaDescription = "Articles divers sur le sport";
 </head>
 
 <body>
+
+<a href="/?action=blogPostCreate">Créer un article</a>
