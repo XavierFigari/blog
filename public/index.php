@@ -3,14 +3,14 @@
 include '../config/database.php';
 
 $routes = [
-    "toto" => '../ressources/views/errors/404.php',
+    "blogpost" => '../app/controllers/blogPostController.php',
 ];
 
 $p = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 if (array_key_exists($p, $routes)) {
     ob_start();
-    include $routes[$p];
+    require $routes[$p];
     $render = ob_get_clean();
     echo $render;
 } else {

@@ -15,3 +15,9 @@ h1 {
 .postFooter {
     font-style: italic;
 }
+
+.footer {
+    border-top: brown 1px solid;
+    color: brown;
+    font-style: italic;
+}
