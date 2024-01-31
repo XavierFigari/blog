@@ -1,5 +1,6 @@
-
-<p class="footer">Ce site est fièrement écrit par Xavier</p>
+<footer>
+    <p>Ce site est fièrement écrit par Xavier</p>
+</footer>
 </body>
 
 </html>

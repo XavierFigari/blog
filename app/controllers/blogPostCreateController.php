@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     blogPostCreate($database, $formData);
 
-    echo "Done";
+    header("Location: /");
 } else {
     require '../ressources/views/layouts/blogPostCreate.tpl.php';
 }

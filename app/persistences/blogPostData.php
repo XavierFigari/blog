@@ -74,3 +74,17 @@ function blogPostUpdate(PDO $pdo, $formData, $post_id) {
                             $formData['endDate'], $formData['importance'], $post_id]);
 
 }
+
+function blogPostDelete(PDO $pdo, $post_id) {
+    $queryDelete = "
+        DELETE 
+            FROM posts_categories
+            WHERE post_id = $post_id;
+
+        DELETE
+            FROM posts
+            WHERE id = $post_id ;
+    ";
+    $statement = $pdo -> prepare($queryDelete);
+    $statement -> execute();
+}
