@@ -1,3 +1,10 @@
+header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 50px;
+    background: lightblue;
+}
 h1 {
     color: brown;
 }
@@ -25,9 +32,9 @@ textarea.input {
 }
 
 .postContent {
-    padding-left: 5px;
-    width: 200px;
-    border-left: 2px solid blue;
+    padding: 20px;
+    width: 400px;
+    border: 2px solid blue;
 }
 
 .postFooter {

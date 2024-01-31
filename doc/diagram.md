@@ -77,7 +77,7 @@ sequenceDiagram
 
     blogPostModifyController.php ->> blogPostUpdate.tpl.php: Display form with values
     blogPostUpdate.tpl.php -->> blogPostModifyController.php: POST data
-    
+
     blogPostModifyController.php ->> blogPostData.php: blogPostUpdate(id)
     blogPostData.php ->> PDO: prepare()
     PDO -->> blogPostData.php: PDOStatement
@@ -86,7 +86,17 @@ sequenceDiagram
     blogPostData.php -->> blogPostModifyController.php: isSuccess
 
     blogPostModifyController.php -->> User: Display post updated
-
-
-
+```
+## Supprimer un article :
+```mermaid
+sequenceDiagram
+    User ->> index.php: ?action=blogPostDelete&id=...
+    index.php ->> blogPostDeleteController.php: include
+    blogPostDeleteController.php ->> blogPostData.php: blogPostDelete(id)
+    blogPostData.php ->> PDO: prepare()
+    PDO -->> blogPostData.php: PDOStatement
+    blogPostData.php ->> PDOStatement: execute()
+    PDOStatement -->> blogPostData.php: isSuccess
+    blogPostData.php -->> blogPostDeleteController.php: isSuccess
+    blogPostDeleteController.php -->> User: Display "Post deleted"
 ```

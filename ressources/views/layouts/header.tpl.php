@@ -18,4 +18,8 @@ $metaDescription = "Articles divers sur le sport";
 
 <body>
 
-<a href="/?action=blogPostCreate">Créer un article</a>
+<header>
+    <h1>Le Blog de moi</h1>
+    <a href="/">Home</a>
+    <a href="/?action=blogPostCreate">Créer un article</a>
+</header>

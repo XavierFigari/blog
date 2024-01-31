@@ -6,13 +6,13 @@ require '../ressources/views/layouts/header.tpl.php';
 ?>
 
 
-<h1>Les <?=$articlesToDisplay?> derniers articles :</h1>
+<h2>Les <?=$articlesToDisplay?> derniers articles :</h2>
 
 <?php if (empty($posts)): ?>
     <p>Bummer ! Il n'y aucun article !</p>
 <?php else : ?>
     <?php foreach ($posts as $currentPost): ?>
-        <h2><a href="http://blog.local/index.php?action=blogpost&id=<?=$currentPost["id"]?>"><?= $currentPost["title"] ?></a></h2>
+        <h3><a href="http://blog.local/index.php?action=blogpost&id=<?=$currentPost["id"]?>"><?= $currentPost["title"] ?></a></h3>
         <p class="postAuthor"> <?= "par " . $currentPost["firstName"] . " " . $currentPost["name"] ?></p>
         <p class="postContent"> <?= $currentPost["content"] ?></p>
         <p class="postFooter"> <?= "Publié le : " . $currentPost["pubDate"] ?></p>
