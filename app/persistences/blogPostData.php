@@ -21,6 +21,7 @@ function blogPostById (PDO $pdo, $id) {
                     posts.title,
                     posts.content,
                     posts.pubDate,
+                    posts.endDate,
                     authors.name,
                     authors.firstName,
                     DATE_FORMAT(pubDate, '%d/%m/%Y') as date
@@ -56,4 +57,20 @@ function blogPostCreate (PDO $pdo, $data) {
                     VALUES (?, ?, ?, ?, ?, (SELECT id FROM authors WHERE name = ?) )";
     $statement = $pdo -> prepare($queryCreate);
     $statement -> execute([$data['title'], $data['content'], $data['pubDate'], $data['endDate'], $data['importance'], "Anonyme"]);
+}
+
+function blogPostUpdate(PDO $pdo, $formData, $post_id) {
+    $queryUpdate = "UPDATE posts 
+    SET title = ?, 
+        content = ?, 
+        pubDate = ?, 
+        endDate = ?, 
+        importance = ? 
+    WHERE
+        id = ? ;  ";
+
+    $statement = $pdo -> prepare($queryUpdate);
+    $statement -> execute([ $formData['title'],   $formData['content'],    $formData['pubDate'],
+                            $formData['endDate'], $formData['importance'], $post_id]);
+
 }

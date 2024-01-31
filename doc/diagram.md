@@ -57,17 +57,36 @@ sequenceDiagram
 sequenceDiagram
     User ->> index.php: ?action=blogPostCreate
     index.php ->> blogPostCreateController.php: include
-    blogPostCreateController.php ->> blogPostCreate.tpl.php: Envoyer données Formulaire
-    blogPostCreate.tpl.php -->> blogPostCreateController.php: blogPost
+    blogPostCreateController.php ->> blogPostCreate.tpl.php: Afficher Formulaire
+    blogPostCreate.tpl.php -->> blogPostCreateController.php: POST data
     blogPostCreateController.php ->> blogPostData.php: blogPostCreate()
     blogPostData.php ->> PDO: prepare()
     PDO -->> blogPostData.php: PDOStatement
     blogPostData.php ->> PDOStatement: execute()
-    PDOStatement -->> blogPostData.php: isSuccess
-    blogPostData.php ->> PDOStatement: fetchAll()
-    PDOStatement -->> blogPostData.php: blogPost
-    blogPostData.php -->> blogPostCreateController.php: blogPost
+    PDOStatement -->> blogPostData.php: success
+    blogPostData.php -->> blogPostCreateController.php: success
 
-    blogPostCreateController.php ->> blogPost.tpl.php: blogPost, blogComment
-    blogPost.tpl.php -->> User: display blogPost and blogComment
+    blogPostCreateController.php -->> User: display Thank you for submission
+```
+
+## Modifer un article :
+```mermaid
+sequenceDiagram
+    User ->> index.php: ?action=blogPostModify&id=...
+    index.php ->> blogPostModifyController.php: include
+
+    blogPostModifyController.php ->> blogPostUpdate.tpl.php: Display form with values
+    blogPostUpdate.tpl.php -->> blogPostModifyController.php: POST data
+    
+    blogPostModifyController.php ->> blogPostData.php: blogPostUpdate(id)
+    blogPostData.php ->> PDO: prepare()
+    PDO -->> blogPostData.php: PDOStatement
+    blogPostData.php ->> PDOStatement: execute()
+    PDOStatement -->> blogPostData.php: isSuccess
+    blogPostData.php -->> blogPostModifyController.php: isSuccess
+
+    blogPostModifyController.php -->> User: Display post updated
+
+
+
 ```

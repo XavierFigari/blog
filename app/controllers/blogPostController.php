@@ -2,10 +2,10 @@
 
 require '../app/persistences/blogPostData.php';
 // get the id from URL
-$articleId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$postId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-$post = blogPostById($database, $articleId);
-$comments = commentsByBlogPost($database, $articleId);
+$post = blogPostById($database, $postId);
+$comments = commentsByBlogPost($database, $postId);
 
 // Les afficher
 
