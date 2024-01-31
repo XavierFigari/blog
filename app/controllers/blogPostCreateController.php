@@ -20,5 +20,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     header("Location: /");
 } else {
-    require '../ressources/views/layouts/blogPostCreate.tpl.php';
+    require '../ressources/views/blogPostCreate.tpl.php';
 }

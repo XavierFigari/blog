@@ -9,10 +9,10 @@ require '../ressources/views/layouts/header.tpl.php';
 
     <p>L'article <?= $postId ?> n'existe pas !</p>
 <?php else : ?>
-    <h2><?= $post[0]["title"] ?></h2>
-    <p class="postAuthor"> <?= "par " . $post[0]["firstName"] . " " . $post[0]["name"] ?></p>
-    <p class="postContent"> <?= $post[0]["content"] ?></p>
-    <p class="postFooter"> <?= "Publié le : " . $post[0]["pubDate"] ?></p>
+    <h2><?= $post["title"] ?></h2>
+    <p class="postAuthor"> <?= "par " . $post["firstName"] . " " . $post["name"] ?></p>
+    <p class="postContent"> <?= $post["content"] ?></p>
+    <p class="postFooter"> <?= "Publié le : " . $post["pubDate"] ?></p>
     <div class="postActions">
         <a class="postButton" href="?action=blogPostModify&id=<?= $postId ?>">Modifier l'article</a>
         <a class="postButton" href="?action=blogPostDelete&id=<?= $postId ?>">Supprimer l'article (irréversible !)</a>

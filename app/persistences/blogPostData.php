@@ -29,17 +29,9 @@ function blogPostById (PDO $pdo, $id) {
                 INNER JOIN authors
                     ON posts.authors_id = authors.id
               WHERE posts.id = " . $id ;
-    return $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
-
-    // MIEUX :
-//    $query = "SELECT title, content, name FROM posts JOIN authors ON posts.authors_id = authors.id AND posts.id = ?";
-//    PDOStatement: $stmt = $pdo->prepare($query);
-//    $stmt -> execute([$idArticle]);
-//    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-//    // return post with author
-//   return $result;
-
+    PDOStatement: $stmt = $pdo->prepare($query);
+    $stmt -> execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 function commentsByBlogPost (PDO $pdo, $id) {
     $query = "  SELECT comments.comment,
@@ -87,4 +79,23 @@ function blogPostDelete(PDO $pdo, $post_id) {
     ";
     $statement = $pdo -> prepare($queryDelete);
     $statement -> execute();
+}
+
+function blogPostsByCategory(PDO $pdo, $categoryName) {
+    $query = "SELECT
+                    p.id,
+                    c.catName,
+                    p.title,
+                    p.content,
+                    p.pubDate,
+                    p.endDate,
+                    a.name,
+                    a.firstName,
+                    DATE_FORMAT(pubDate, '%d/%m/%Y') as date
+              FROM posts as p
+                INNER JOIN authors as a ON p.authors_id = a.id
+                INNER JOIN posts_categories as pc ON p.id = pc.post_id
+                INNER JOIN categories as c ON pc.category_id = c.id
+              WHERE c.catName = '$categoryName';" ;
+    return $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
 }

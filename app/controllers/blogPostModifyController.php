@@ -23,5 +23,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $posts = blogPostById($database, $post_id);
     $post = $posts[0];
     // Display form pre-filled with existing data
-    require '../ressources/views/layouts/blogPostUpdate.tpl.php';
+    require '../ressources/views/blogPostUpdate.tpl.php';
 }
