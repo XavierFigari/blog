@@ -7,57 +7,66 @@ header {
     /*gap: 50px;*/
     background: lightblue;
 }
-
+.centerText {
+    text-align: center;
+}
 .nav {
     display: flex;
     justify-content: center;
     gap: 50px;
 }
-
 footer {
     text-align: center;
     border-top: brown 1px solid;
     color: brown;
     font-style: italic;
 }
-
 h1 {
     color: brown;
 }
-
 label {
     padding-top: 20px;
     display: block;
     width: 400px;
 }
-
 .modifPost {
     color: red;
 }
 input[type="text"], textarea {
     width: 300px;
 }
-/*
-textarea.input {
-    width:500px;
+.listeArticles {
+    display: flex;
+    flex-direction: column;
+    /*width:1000px;*/
+    align-items: center;
 }
-*/
+.postDetails {
+    margin-left: 40px;
+    padding-left: 10px;
+    border-left: gray 4px solid;
+}
 .postAuthor {
-    color: blue;
+    color: gray;
     font-style: italic;
-    margin-left: 20px;
 }
-
 .postContent {
-    margin-left: 20px;
-    padding: 20px;
+    padding: 10px;
     width: 400px;
-    /*border: 2px solid blue;*/
     background: lightgray;
 }
-
 .postFooter {
-    margin-left: 20px;
     font-style: italic;
 }
+.postActions {
+    display: flex;
+    justify-content: left;
+    gap: 50px;
+}
 
+.postButton {
+    padding: 10px;
+    background: lightyellow;
+    border-radius: 10px;
+    border: green 1px solid;
+}
